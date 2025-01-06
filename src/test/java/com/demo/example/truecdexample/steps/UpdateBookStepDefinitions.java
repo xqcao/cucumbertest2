@@ -87,16 +87,6 @@ public class UpdateBookStepDefinitions {
                 Book.class);
     }
 
-    @Then("the response status code should be OK")
-    public void verifyResponseStatusIsOk() {
-        assertEquals(HttpStatus.OK, response.getStatusCode());
-    }
-
-    @Then("the response status code should be NOT_FOUND")
-    public void verifyResponseStatusIsNotFound() {
-        assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
-    }
-
     @Then("the book should be updated with new details")
     public void verifyBookIsUpdatedWithNewDetails() {
         Book updatedBook = response.getBody();
@@ -117,5 +107,15 @@ public class UpdateBookStepDefinitions {
         assertEquals(updatedBook.getAuthor(), retrievedBook.getAuthor());
         assertEquals(updatedBook.getIsbn(), retrievedBook.getIsbn());
         assertEquals(updatedBook.getPrice(), retrievedBook.getPrice());
+    }
+
+    @Then("the update operation should be successful")
+    public void verifyUpdateOperationSuccessful() {
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+    }
+
+    @Then("the update operation should return not found status")
+    public void verifyUpdateOperationNotFound() {
+        assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
     }
 }
